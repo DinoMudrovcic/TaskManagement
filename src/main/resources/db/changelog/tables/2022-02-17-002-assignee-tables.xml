@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2022-02-17-002-assignee-tables" author="dinomudrovcic">
+
+        <createTable tableName="assignee">
+
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="assignee_pk"/>
+            </column>
+
+            <column name="assignee_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="assignee_surname" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <createSequence sequenceName="assignee_seq" incrementBy="1" startValue="1" />
+
+
+
+        <rollback>
+            <dropSequence sequenceName="assignee_seq" />
+            <dropTable tableName="assignee" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

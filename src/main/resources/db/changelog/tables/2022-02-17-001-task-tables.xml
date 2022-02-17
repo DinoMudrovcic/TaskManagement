@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2022-02-17-001-task-tables" author="dinomudrovcic">
+
+        <createTable tableName="task_group">
+
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="task_group_pk"/>
+            </column>
+
+            <column name="version" type="NUMBER(19)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_group_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <createSequence sequenceName="task_group_seq" incrementBy="1" startValue="1" />
+
+        <createTable tableName="task">
+
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="task_pk"/>
+            </column>
+
+            <column name="version" type="NUMBER(19)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_group_id" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_duration" type="NUMBER(19)" />
+
+            <column name="total_duration" type="NUMBER(19)" />
+
+        </createTable>
+
+        <createSequence sequenceName="task_seq" incrementBy="1" startValue="1"/>
+
+        <addForeignKeyConstraint constraintName="task_taskgroup_fk"
+                                 baseTableName="task" baseColumnNames="task_group_id"
+                                 referencedTableName="task_group" referencedColumnNames="id"/>
+
+        <createTable tableName="sub_task">
+
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="sub_task_pk"/>
+            </column>
+
+            <column name="version" type="NUMBER(19)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sub_task_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sub_task_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="task_id" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sub_task_duration" type="NUMBER(19)" />
+
+        </createTable>
+
+        <createSequence sequenceName="sub_task_seq" incrementBy="1" startValue="1"/>
+
+        <addForeignKeyConstraint constraintName="task_subtask_fk"
+                                 baseTableName="sub_task" baseColumnNames="task_id"
+                                 referencedTableName="task" referencedColumnNames="id"/>
+
+
+        <rollback>
+            <dropSequence sequenceName="task_group_seq" />
+            <dropTable tableName="task_group" />
+            <dropSequence sequenceName="task_seq" />
+            <dropTable tableName="task" />
+            <dropSequence sequenceName="sub_task_seq" />
+            <dropTable tableName="sub_task" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

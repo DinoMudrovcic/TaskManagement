@@ -5,5 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
 
+    <include relativeToChangelogFile="true" file="tables/2022-02-17-001-task-tables.xml"/>
+    <include relativeToChangelogFile="true" file="tables/2022-02-17-002-assignee-tables.xml"/>
+    <include relativeToChangelogFile="true" file="tables/2022-02-17-003-task-time-tables.xml"/>
 
 </databaseChangeLog>
