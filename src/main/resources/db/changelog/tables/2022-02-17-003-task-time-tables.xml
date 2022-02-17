@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2022-02-17-003-task-time-tables" author="dinomudrovcic">
+
+        <createTable tableName="task_time">
+
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="task_time_pk"/>
+            </column>
+
+            <column name="task_id" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="assignee_id" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="start_time" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="end_time" type="NUMBER(19)" />
+
+            <column name="duration" type="NUMBER(19)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <createSequence sequenceName="task_time_seq" incrementBy="1" startValue="1" />
+
+
+
+        <rollback>
+            <dropSequence sequenceName="task_time_seq" />
+            <dropTable tableName="task_time" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
