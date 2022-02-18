@@ -1,7 +1,7 @@
 package com.dinomudrovcic.taskmanagement.service;
 
-import com.dinomudrovcic.taskmanagement.model.AssigneeRequest;
-import com.dinomudrovcic.taskmanagement.model.AssigneeResponse;
+import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
+import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
 
 import java.util.List;
 
@@ -13,14 +13,12 @@ public interface AssigneeService {
 
     AssigneeResponse getAssigneeById(Long id);
 
-    AssigneeResponse getAssigneeByName(String name);
-
     AssigneeResponse saveAssignee(AssigneeRequest request);
 
     AssigneeResponse updateAssignee(AssigneeRequest request);
 
-    AssigneeResponse deleteAssignee(Long assigneeId);
+    boolean deleteAssignee(Long assigneeId);
 
-    AssigneeResponse deleteAssignee(AssigneeRequest request);
+    boolean deleteAssignee(AssigneeRequest request);
 
 }

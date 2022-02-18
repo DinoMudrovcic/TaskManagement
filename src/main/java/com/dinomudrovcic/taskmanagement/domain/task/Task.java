@@ -1,5 +1,6 @@
 package com.dinomudrovcic.taskmanagement.domain.task;
 
+import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
 import com.dinomudrovcic.taskmanagement.model.AbstractTask;
 import lombok.*;
 
@@ -34,5 +35,9 @@ public class Task extends AbstractTask {
 
     @Column(name = "total_duration")
     private Long totalDuration;
+
+    @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "assignee_id", foreignKey = @ForeignKey(name = "task_assignee_fk"))
+    private Assignee assignee;
 
 }

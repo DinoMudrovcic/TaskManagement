@@ -9,22 +9,25 @@ import java.util.Optional;
 
 public enum TaskStatus implements Serializable {
 
-    CREATED("CREATED"),
-    ASSIGNED("ASSIGNED"),
-    WORKING("WORKING"),
-    TESTING("TESTING"),
-    REVISION("REVISION"),
-    DONE("DONE"),
-    ARCHIVED("ARCHIVED");
+    CREATED("CREATED", 0L),
+    ASSIGNED("ASSIGNED", 1L),
+    WORKING("WORKING",2L),
+    TESTING("TESTING",3L),
+    REVISION("REVISION",4L),
+    DONE("DONE", 5L),
+    ARCHIVED("ARCHIVED", 6L);
 
     private final String code;
 
-    TaskStatus(final String code) {
+    private final Long value;
+
+    TaskStatus(final String code, final Long value) {
         this.code = code;
+        this.value = value;
     }
 
     @JsonCreator
-    public static TaskStatus forValue(final String value) {
+    public static TaskStatus forValue(final Long value) {
         return Optional.ofNullable(value)
             .map(it ->
                 Arrays.stream(TaskStatus.values())

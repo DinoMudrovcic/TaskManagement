@@ -1,10 +1,11 @@
 package com.dinomudrovcic.taskmanagement.controller.assignee;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
-import com.dinomudrovcic.taskmanagement.model.AssigneeRequest;
-import com.dinomudrovcic.taskmanagement.model.AssigneeResponse;
+import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
+import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
 import com.dinomudrovcic.taskmanagement.service.AssigneeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,11 +33,6 @@ public class AssigneeController {
         return assigneeService.getAssigneeById(id);
     }
 
-    @GetMapping("/{name}")
-    public AssigneeResponse getAssigneeByName(@Valid @PathVariable String name) {
-        return assigneeService.getAssigneeByName(name);
-    }
-
     @PostMapping
     public AssigneeResponse save(@Valid @RequestBody AssigneeRequest request) {
         return assigneeService.saveAssignee(request);
@@ -48,13 +44,17 @@ public class AssigneeController {
     }
 
     @DeleteMapping
-    public AssigneeResponse delete(@Valid @RequestBody AssigneeRequest request) {
-        return assigneeService.deleteAssignee(request);
+    public ResponseEntity<?> delete(@Valid @RequestBody AssigneeRequest request) {
+        return assigneeService.deleteAssignee(request) ?
+            new ResponseEntity<>(HttpStatus.OK) :
+            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
-    public AssigneeResponse deleteById(@Valid @PathVariable Long id) {
-        return assigneeService.deleteAssignee(id);
+    public ResponseEntity<?> deleteById(@Valid @PathVariable Long id) {
+        return assigneeService.deleteAssignee(id) ?
+            new ResponseEntity<>(HttpStatus.OK) :
+            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

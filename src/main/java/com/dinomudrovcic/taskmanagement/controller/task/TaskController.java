@@ -1,9 +1,11 @@
 package com.dinomudrovcic.taskmanagement.controller.task;
 
-import com.dinomudrovcic.taskmanagement.model.TaskRequest;
-import com.dinomudrovcic.taskmanagement.model.TaskResponse;
+import com.dinomudrovcic.taskmanagement.model.request.TaskRequest;
+import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
 import com.dinomudrovcic.taskmanagement.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,11 +33,6 @@ public class TaskController {
         return taskService.getTaskById(id);
     }
 
-    @GetMapping("/{name}")
-    public TaskResponse getTaskByName(@Valid @PathVariable String name) {
-        return taskService.getTaskByName(name);
-    }
-
     @PostMapping
     public TaskResponse save(@Valid @RequestBody TaskRequest request) {
         return taskService.saveTask(request);
@@ -47,13 +44,22 @@ public class TaskController {
     }
 
     @DeleteMapping
-    public TaskResponse delete(@Valid @RequestBody TaskRequest request) {
-        return taskService.deleteTask(request);
+    public ResponseEntity<?> delete(@Valid @RequestBody TaskRequest request) {
+        return taskService.deleteTask(request) ?
+            new ResponseEntity<>(HttpStatus.OK) :
+            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
-    public TaskResponse deleteById(@Valid @PathVariable Long id) {
-        return taskService.deleteTaskById(id);
+    public ResponseEntity<?> deleteById(@Valid @PathVariable Long id) {
+        return taskService.deleteTaskById(id) ?
+            new ResponseEntity<>(HttpStatus.OK) :
+            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/")
+    public TaskResponse assign(@RequestParam("assigneeId") Long assigneeId, @RequestParam("taskId") Long taskId){
+        return taskService.taskAssign(assigneeId, taskId);
     }
 
 }

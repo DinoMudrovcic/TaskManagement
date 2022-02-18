@@ -1,7 +1,7 @@
 package com.dinomudrovcic.taskmanagement.service;
 
-import com.dinomudrovcic.taskmanagement.model.TaskRequest;
-import com.dinomudrovcic.taskmanagement.model.TaskResponse;
+import com.dinomudrovcic.taskmanagement.model.request.TaskRequest;
+import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
 
 import java.util.List;
 
@@ -13,14 +13,14 @@ public interface TaskService {
 
     TaskResponse getTaskById(Long id);
 
-    TaskResponse getTaskByName(String name);
-
     TaskResponse saveTask(TaskRequest request);
 
     TaskResponse updateTask(TaskRequest request);
 
-    TaskResponse deleteTask(TaskRequest request);
+    boolean deleteTask(TaskRequest request);
 
-    TaskResponse deleteTaskById(Long id);
+    boolean deleteTaskById(Long id);
+
+    TaskResponse taskAssign(Long assigneeId, Long taskId);
 
 }

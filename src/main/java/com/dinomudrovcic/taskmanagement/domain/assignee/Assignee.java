@@ -1,5 +1,6 @@
 package com.dinomudrovcic.taskmanagement.domain.assignee;
 
+import com.dinomudrovcic.taskmanagement.domain.task.Task;
 import com.dinomudrovcic.taskmanagement.domain.task.TaskTime;
 import lombok.*;
 
@@ -38,6 +39,13 @@ public class Assignee {
     private String assigneeSurname;
 
     @OneToMany(mappedBy = "assignee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<TaskTime> taskTime;
+    private Collection<TaskTime> taskTimeCollection;
+
+    @OneToMany(mappedBy = "assignee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<Task> tasks;
+
+    public String getAssigneeFullName() {
+        return String.format("{} {}", assigneeName, assigneeSurname);
+    }
 
 }

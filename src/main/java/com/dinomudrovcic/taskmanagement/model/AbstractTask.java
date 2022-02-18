@@ -2,6 +2,8 @@ package com.dinomudrovcic.taskmanagement.model;
 
 import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
 import com.dinomudrovcic.taskmanagement.domain.task.TaskTime;
+import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
@@ -13,6 +15,7 @@ import java.util.Collection;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Data
 public abstract class AbstractTask {
 
     @Id
