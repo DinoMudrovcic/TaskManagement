@@ -8,10 +8,8 @@ import com.dinomudrovcic.taskmanagement.service.AssigneeService;
 import com.dinomudrovcic.taskmanagement.util.RepositoryUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.SequenceGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 

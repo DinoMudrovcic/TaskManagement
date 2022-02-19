@@ -10,15 +10,8 @@ import com.dinomudrovcic.taskmanagement.service.TaskTimeService;
 import com.dinomudrovcic.taskmanagement.util.CalculationUtils;
 import com.dinomudrovcic.taskmanagement.util.DateUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import static java.util.Objects.nonNull;
 

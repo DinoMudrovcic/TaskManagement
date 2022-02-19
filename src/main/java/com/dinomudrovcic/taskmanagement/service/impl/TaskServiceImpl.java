@@ -5,7 +5,6 @@ import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
 import com.dinomudrovcic.taskmanagement.model.request.TaskRequest;
 import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
 import com.dinomudrovcic.taskmanagement.repository.SubTaskRepository;
-import com.dinomudrovcic.taskmanagement.repository.TaskGroupRepository;
 import com.dinomudrovcic.taskmanagement.repository.TaskRepository;
 import com.dinomudrovcic.taskmanagement.service.TaskGroupService;
 import com.dinomudrovcic.taskmanagement.service.TaskService;
@@ -16,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.nonNull;
 
 @Service
 @RequiredArgsConstructor

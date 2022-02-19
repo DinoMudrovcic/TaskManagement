@@ -1,14 +1,11 @@
 package com.dinomudrovcic.taskmanagement.domain.assignee;
 
-import com.dinomudrovcic.taskmanagement.domain.task.Task;
-import com.dinomudrovcic.taskmanagement.domain.task.TaskTime;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 
 @Entity
 @Table(name="assignee")

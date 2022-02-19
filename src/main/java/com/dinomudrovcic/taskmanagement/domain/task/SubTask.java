@@ -3,8 +3,6 @@ package com.dinomudrovcic.taskmanagement.domain.task;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name="sub_task")

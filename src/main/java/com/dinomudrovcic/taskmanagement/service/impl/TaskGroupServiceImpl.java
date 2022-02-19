@@ -6,7 +6,6 @@ import com.dinomudrovcic.taskmanagement.model.response.TaskGroupResponse;
 import com.dinomudrovcic.taskmanagement.repository.TaskGroupRepository;
 import com.dinomudrovcic.taskmanagement.repository.TaskRepository;
 import com.dinomudrovcic.taskmanagement.service.TaskGroupService;
-import com.dinomudrovcic.taskmanagement.service.TaskService;
 import com.dinomudrovcic.taskmanagement.util.RepositoryUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
