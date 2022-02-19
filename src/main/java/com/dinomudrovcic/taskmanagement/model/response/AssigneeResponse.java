@@ -1,6 +1,5 @@
 package com.dinomudrovcic.taskmanagement.model.response;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,11 +12,5 @@ public class AssigneeResponse {
     private String assigneeName;
 
     private String assigneeSurname;
-
-    public AssigneeResponse(final Assignee assignee) {
-        this.id = assignee.getId();
-        this.assigneeName = assignee.getAssigneeName();
-        this.assigneeSurname = assignee.getAssigneeSurname();
-    }
 
 }

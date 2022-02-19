@@ -1,6 +1,5 @@
 package com.dinomudrovcic.taskmanagement.model.response;
 
-import com.dinomudrovcic.taskmanagement.domain.task.Task;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,28 +7,18 @@ import lombok.Data;
 @Builder
 public class TaskResponse {
 
-    private Long task_id;
+    private Long id;
 
-    private String task_name;
+    private String taskName;
 
-    private String task_description;
+    private String taskDescription;
 
-    private String task_assignee;
+    private String taskGroup;
 
-    private String task_group;
+    private String taskStatus;
 
-    private String task_status;
+    private Long duration;
 
-    private Long total_duration;
-
-    public TaskResponse(Task task) {
-        this.task_id = task.getId();
-        this.task_name = task.getName();
-        this.task_description = task.getDescription();
-        this.task_assignee = task.getAssignee().getAssigneeFullName();
-        this.task_group = task.getTaskGroup().getTaskGroupName();
-        this.task_status = task.getTaskStatus().getCode();
-        this.total_duration = task.getTotalDuration();
-    }
+    private Long totalDuration;
 
 }

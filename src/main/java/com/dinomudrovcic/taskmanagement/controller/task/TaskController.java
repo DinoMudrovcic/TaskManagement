@@ -20,46 +20,41 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public List<TaskResponse> getAllTasks() {
-        return taskService.getAllTasks();
+        return taskService.getAllTasksResponse();
     }
 
     @GetMapping
-    public TaskResponse getTask(@Valid @RequestBody TaskRequest request) {
-        return taskService.getTask(request);
+    public TaskResponse getTask(@Valid @RequestBody final TaskRequest request) {
+        return taskService.getTaskResponse(request);
     }
 
     @GetMapping("/{id}")
-    public TaskResponse getTaskById(@Valid @PathVariable Long id) {
-        return taskService.getTaskById(id);
+    public TaskResponse getTaskById(@Valid @PathVariable final Long id) {
+        return taskService.getTaskResponse(id);
     }
 
     @PostMapping
-    public TaskResponse save(@Valid @RequestBody TaskRequest request) {
-        return taskService.saveTask(request);
+    public TaskResponse save(@Valid @RequestBody final TaskRequest request) {
+        return taskService.saveTaskResponse(request);
     }
 
     @PutMapping
-    public TaskResponse update(@Valid @RequestBody TaskRequest request) {
-        return taskService.updateTask(request);
+    public TaskResponse update(@Valid @RequestBody final TaskRequest request) {
+        return taskService.updateTaskResponse(request);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@Valid @RequestBody TaskRequest request) {
+    public ResponseEntity<?> delete(@Valid @RequestBody final TaskRequest request) {
         return taskService.deleteTask(request) ?
             new ResponseEntity<>(HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@Valid @PathVariable Long id) {
-        return taskService.deleteTaskById(id) ?
+    public ResponseEntity<?> deleteById(@Valid @PathVariable final Long id) {
+        return taskService.deleteTask(id) ?
             new ResponseEntity<>(HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    @PostMapping("/")
-    public TaskResponse assign(@RequestParam("assigneeId") Long assigneeId, @RequestParam("taskId") Long taskId){
-        return taskService.taskAssign(assigneeId, taskId);
     }
 
 }

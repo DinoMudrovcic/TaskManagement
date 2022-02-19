@@ -12,28 +12,33 @@
                 <constraints primaryKey="true" primaryKeyName="task_time_pk"/>
             </column>
 
-            <column name="task_id" type="NUMBER(19)">
+            <column name="task_id" type="NUMBER(19)" />
+
+            <column name="sub_task_id" type="NUMBER(19)" />
+
+            <column name="assignee_id" type="NUMBER(19)" />
+
+            <column name="start_time" type="DATE">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="assignee_id" type="NUMBER(19)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="start_time" type="NUMBER(19)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="end_time" type="NUMBER(19)" />
-
-            <column name="duration" type="NUMBER(19)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="end_time" type="DATE" />
 
         </createTable>
 
         <createSequence sequenceName="task_time_seq" incrementBy="1" startValue="1" />
 
+        <addForeignKeyConstraint constraintName="tasktime_task_fk"
+                                 baseTableName="task_time" baseColumnNames="task_id"
+                                 referencedTableName="task" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="tasktime_assignee_fk"
+                                 baseTableName="task_time" baseColumnNames="assignee_id"
+                                 referencedTableName="assignee" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="tasktime_subtask_fk"
+                                 baseTableName="task_time" baseColumnNames="sub_task_id"
+                                 referencedTableName="sub_task" referencedColumnNames="id"/>
 
 
         <rollback>

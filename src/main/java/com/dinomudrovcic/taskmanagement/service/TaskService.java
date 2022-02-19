@@ -1,5 +1,7 @@
 package com.dinomudrovcic.taskmanagement.service;
 
+import com.dinomudrovcic.taskmanagement.domain.task.Task;
+import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
 import com.dinomudrovcic.taskmanagement.model.request.TaskRequest;
 import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
 
@@ -7,20 +9,30 @@ import java.util.List;
 
 public interface TaskService {
 
-    List<TaskResponse> getAllTasks();
+    List<TaskResponse> getAllTasksResponse();
 
-    TaskResponse getTask(TaskRequest request);
+    TaskResponse getTaskResponse(TaskRequest request);
 
-    TaskResponse getTaskById(Long id);
+    TaskResponse getTaskResponse(Long id);
 
-    TaskResponse saveTask(TaskRequest request);
+    TaskResponse saveTaskResponse(TaskRequest request);
 
-    TaskResponse updateTask(TaskRequest request);
+    TaskResponse updateTaskResponse(TaskRequest request);
 
     boolean deleteTask(TaskRequest request);
 
-    boolean deleteTaskById(Long id);
+    boolean deleteTask(Long id);
 
-    TaskResponse taskAssign(Long assigneeId, Long taskId);
+    void calculateDuration(Long taskId, Long duration);
+
+    boolean taskExists(Long taskId);
+
+    Task getTask(Long taskId);
+
+    void setStatus(Long taskId, TaskStatus status);
+
+    void calculateTotalDuration(Long taskId, Long duration);
+
+    List<Task> getTasksByGroup(Long groupId);
 
 }

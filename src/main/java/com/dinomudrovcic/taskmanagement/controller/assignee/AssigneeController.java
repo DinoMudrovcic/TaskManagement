@@ -20,38 +20,38 @@ public class AssigneeController {
 
     @GetMapping("/assignees")
     public List<AssigneeResponse> getAllAssignees() {
-        return assigneeService.getAllAssignees();
+        return assigneeService.getAllAssigneesResponse();
     }
 
     @GetMapping
-    public AssigneeResponse getAssignee(@Valid @RequestBody AssigneeRequest request) {
-        return assigneeService.getAssignee(request);
+    public AssigneeResponse getAssignee(@Valid @RequestBody final AssigneeRequest request) {
+        return assigneeService.getAssigneeResponse(request);
     }
 
     @GetMapping("/{id}")
-    public AssigneeResponse getAssigneeById(@Valid @PathVariable Long id) {
-        return assigneeService.getAssigneeById(id);
+    public AssigneeResponse getAssigneeById(@Valid @PathVariable final Long id) {
+        return assigneeService.getAssigneeResponse(id);
     }
 
     @PostMapping
-    public AssigneeResponse save(@Valid @RequestBody AssigneeRequest request) {
-        return assigneeService.saveAssignee(request);
+    public AssigneeResponse save(@Valid @RequestBody final AssigneeRequest request) {
+        return assigneeService.saveAssigneeResponse(request);
     }
 
     @PutMapping
-    public AssigneeResponse update(@Valid @RequestBody AssigneeRequest request) {
-        return assigneeService.updateAssignee(request);
+    public AssigneeResponse update(@Valid @RequestBody final AssigneeRequest request) {
+        return assigneeService.updateAssigneeResponse(request);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@Valid @RequestBody AssigneeRequest request) {
+    public ResponseEntity<?> delete(@Valid @RequestBody final AssigneeRequest request) {
         return assigneeService.deleteAssignee(request) ?
             new ResponseEntity<>(HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> deleteById(@Valid @PathVariable final Long id) {
         return assigneeService.deleteAssignee(id) ?
             new ResponseEntity<>(HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.BAD_REQUEST);

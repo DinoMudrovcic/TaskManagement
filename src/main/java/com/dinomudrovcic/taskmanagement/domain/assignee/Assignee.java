@@ -18,11 +18,11 @@ import java.util.Collection;
 @Builder
 @EqualsAndHashCode(exclude = { "taskTime" })
 @ToString(exclude = { "taskTime" })
+@SequenceGenerator(name = "assignee_gen", sequenceName = "assignee_seq", allocationSize = 1)
 public class Assignee {
 
     @Id
-    @SequenceGenerator(name = "assignee_seq", sequenceName = "assignee_seq", allocationSize = 1)
-    @GeneratedValue(generator = "assignee_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "assignee_gen", strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 
@@ -38,11 +38,8 @@ public class Assignee {
     @Column(name = "assignee_surname")
     private String assigneeSurname;
 
-    @OneToMany(mappedBy = "assignee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<TaskTime> taskTimeCollection;
-
-    @OneToMany(mappedBy = "assignee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<Task> tasks;
+    /*@OneToMany(mappedBy = "assignee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<TaskTime> taskTimeCollection;*/
 
     public String getAssigneeFullName() {
         return String.format("{} {}", assigneeName, assigneeSurname);

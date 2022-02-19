@@ -11,15 +11,12 @@ public enum TaskStatus implements Serializable {
 
     CREATED("CREATED", 0L),
     ASSIGNED("ASSIGNED", 1L),
-    WORKING("WORKING",2L),
-    TESTING("TESTING",3L),
-    REVISION("REVISION",4L),
-    DONE("DONE", 5L),
-    ARCHIVED("ARCHIVED", 6L);
+    UNASSIGNED("UNASSIGNED", 2L),
+    DONE("DONE", 3L);
 
-    private final String code;
+    private String code;
 
-    private final Long value;
+    private Long value;
 
     TaskStatus(final String code, final Long value) {
         this.code = code;
@@ -41,6 +38,11 @@ public enum TaskStatus implements Serializable {
     @JsonValue
     public String getCode() {
         return this.code;
+    }
+
+    @JsonValue
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

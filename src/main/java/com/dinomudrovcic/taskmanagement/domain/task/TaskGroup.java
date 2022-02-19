@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
-@Table(name="task_group")
+@Table(name="task_group", schema = "public")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,8 +35,5 @@ public class TaskGroup {
     @Size(max = 50)
     @Column(name = "task_group_name")
     private String taskGroupName;
-
-    @OneToMany(targetEntity = Task.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<Task> tasks;
 
 }

@@ -2,8 +2,10 @@ package com.dinomudrovcic.taskmanagement.model.request;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class TaskRequest {
+public class TaskRequest implements Serializable {
 
     private Long task_id;
 
@@ -14,12 +16,5 @@ public class TaskRequest {
     private Long task_assignee_id;
 
     private Long task_group_id;
-
-    private Long task_status_id;
-
-    //TODO: check if builder handles this on Request
-    public TaskRequest(final Long taskId){
-        this.task_id = taskId;
-    }
 
 }

@@ -8,8 +8,10 @@ import com.dinomudrovcic.taskmanagement.service.AssigneeService;
 import com.dinomudrovcic.taskmanagement.util.RepositoryUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.SequenceGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,26 +22,40 @@ public class AssigneeServiceImpl implements AssigneeService {
     private final AssigneeRepository assigneeRepository;
 
     @Override
-    public List<AssigneeResponse> getAllAssignees() {
+    public List<AssigneeResponse> getAllAssigneesResponse() {
         return assigneeRepository.findAll().stream()
-                .map(assignee -> new AssigneeResponse(assignee))
+                .map(assignee -> AssigneeResponse.builder()
+                        .id(assignee.getId())
+                        .assigneeName(assignee.getAssigneeName())
+                        .assigneeSurname(assignee.getAssigneeSurname())
+                        .build())
                 .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
-    public AssigneeResponse getAssignee(final AssigneeRequest request) {
-        return new AssigneeResponse(assigneeRepository.getById(request.getAssignee_id()));
+    public AssigneeResponse getAssigneeResponse(final AssigneeRequest request) {
+        Assignee retrievedAssignee = assigneeRepository.getById(request.getAssignee_id());
+        return AssigneeResponse.builder()
+                .id(retrievedAssignee.getId())
+                .assigneeName(retrievedAssignee.getAssigneeName())
+                .assigneeSurname(retrievedAssignee.getAssigneeSurname())
+                .build();
     }
 
     @Override
-    public AssigneeResponse getAssigneeById(final Long id) {
-        return new AssigneeResponse(assigneeRepository.getById(id));
+    public AssigneeResponse getAssigneeResponse(final Long id) {
+        Assignee retrievedAssignee = assigneeRepository.getById(id);
+        return AssigneeResponse.builder()
+                .id(retrievedAssignee.getId())
+                .assigneeName(retrievedAssignee.getAssigneeName())
+                .assigneeSurname(retrievedAssignee.getAssigneeSurname())
+                .build();
     }
 
     @Override
     @Transactional
-    public AssigneeResponse saveAssignee(final AssigneeRequest request) {
-        if (RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
+    public AssigneeResponse saveAssigneeResponse(final AssigneeRequest request) {
+        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
             return AssigneeResponse.builder().build();
         }
 
@@ -48,12 +64,17 @@ public class AssigneeServiceImpl implements AssigneeService {
                 .assigneeSurname(request.getAssignee_surname())
                 .build();
 
-        return new AssigneeResponse(assigneeRepository.saveAndFlush(newAssignee));
+        Assignee savedAssignee = assigneeRepository.save(newAssignee);
+        return AssigneeResponse.builder()
+                .id(savedAssignee.getId())
+                .assigneeName(savedAssignee.getAssigneeName())
+                .assigneeSurname(savedAssignee.getAssigneeSurname())
+                .build();
     }
 
     @Override
     @Transactional
-    public AssigneeResponse updateAssignee(final AssigneeRequest request) {
+    public AssigneeResponse updateAssigneeResponse(final AssigneeRequest request) {
         if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
             return AssigneeResponse.builder().build();
         }
@@ -62,7 +83,12 @@ public class AssigneeServiceImpl implements AssigneeService {
         updateAssignee.setAssigneeName(request.getAssignee_name());
         updateAssignee.setAssigneeSurname(request.getAssignee_surname());
 
-        return new AssigneeResponse(assigneeRepository.saveAndFlush(updateAssignee));
+        Assignee updatedAssignee = assigneeRepository.saveAndFlush(updateAssignee);
+        return AssigneeResponse.builder()
+                .id(updatedAssignee.getId())
+                .assigneeName(updatedAssignee.getAssigneeName())
+                .assigneeSurname(updatedAssignee.getAssigneeSurname())
+                .build();
     }
 
     @Override
@@ -87,5 +113,15 @@ public class AssigneeServiceImpl implements AssigneeService {
         assigneeRepository.deleteById(request.getAssignee_id());
 
         return true;
+    }
+
+    @Override
+    public boolean assigneeExists(final Long assigneeId) {
+        return RepositoryUtils.checkIfEntityExists(assigneeRepository, assigneeId);
+    }
+
+    @Override
+    public Assignee getAssignee(final Long assigneeId) {
+        return assigneeRepository.getById(assigneeId);
     }
 }

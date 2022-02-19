@@ -15,10 +15,10 @@ public class ControllerAdvice {
 
     @ResponseBody
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleException(final Exception exception) {
         log.error(exception.getMessage());
-        return exception.getMessage();
+        return "RESOURCE NOT FOUND";
     }
 
 

@@ -1,25 +1,26 @@
-package com.dinomudrovcic.taskmanagement.model;
+package com.dinomudrovcic.taskmanagement.domain.task;
 
-import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
-import com.dinomudrovcic.taskmanagement.domain.task.TaskTime;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @Data
 public abstract class AbstractTask {
 
     @Id
-    @GeneratedValue(generator = "abstract_task_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "abstract_task_gen", strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
     private Long id;
 
     @Version
@@ -37,11 +38,12 @@ public abstract class AbstractTask {
     @Size(max = 255)
     private String description;
 
-    @Column(name = "task_status", nullable = false, columnDefinition = "VARCHAR(50)")
-    @Type(type = "com.dinomudrovcic.taskmanagement.domain.task.TaskStatus")
+    @Column(name = "task_status", nullable = false, columnDefinition = "VARCHAR(255)")
+    @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
-    @Column(name = "duration")
+    @Column(name = "duration", nullable = false)
+    @ColumnDefault("0")
     private Long duration;
 
 }

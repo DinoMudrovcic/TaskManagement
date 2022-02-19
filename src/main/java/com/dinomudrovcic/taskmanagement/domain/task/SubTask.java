@@ -1,6 +1,5 @@
 package com.dinomudrovcic.taskmanagement.domain.task;
 
-import com.dinomudrovcic.taskmanagement.model.AbstractTask;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,18 +12,18 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = { "version", "taskTime" })
-@ToString(exclude = { "version", "taskTime" })
-@SequenceGenerator(name = "abstract_task_seq", sequenceName = "sub_task_seq", allocationSize = 1)
+@EqualsAndHashCode(exclude = { "version" })
+@ToString(exclude = { "version"})
+@SequenceGenerator(name = "abstract_task_gen", sequenceName = "sub_task_seq", allocationSize = 1)
 @AttributeOverrides({
         @AttributeOverride(name = "name", column = @Column(name = "sub_task_name")),
         @AttributeOverride(name = "description", column = @Column(name = "sub_task_description")),
         @AttributeOverride(name = "duration", column = @Column(name = "sub_task_duration"))
 })
-public class SubTask extends AbstractTask implements Serializable {
+public class SubTask extends AbstractTask {
 
-    @OneToMany(targetEntity = TaskTime.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<TaskTime> taskTime;
+    /*@OneToMany(targetEntity = TaskTime.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<TaskTime> taskTime;*/
 
     @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinColumn(name = "task_id", foreignKey = @ForeignKey(name = "task_subtask_fk"), nullable = false)
