@@ -23,8 +23,8 @@ public class AssigneeController {
         return assigneeService.getAllAssigneesResponse();
     }
 
-    @GetMapping
-    public AssigneeResponse getAssignee(@Valid @RequestBody final AssigneeRequest request) {
+    @PostMapping("/fetch")
+    public AssigneeResponse getAssigneeByRequest(@Valid @RequestBody final AssigneeRequest request) {
         return assigneeService.getAssigneeResponse(request);
     }
 
