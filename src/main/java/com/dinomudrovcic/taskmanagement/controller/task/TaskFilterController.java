@@ -17,38 +17,38 @@ public class TaskFilterController {
 
     private final TaskFilterService service;
 
-    @GetMapping
-    public List<TaskResponse> getAllByName(@RequestParam("name") final String name) {
+    @GetMapping("/name")
+    public List<TaskResponse> filterByName(@RequestParam("name") final String name) {
         return service.getAllByNameLike(name);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByDescription(@RequestParam("description") final String description) {
+    @GetMapping("/description")
+    public List<TaskResponse> filterByDescription(@RequestParam("description") final String description) {
         return service.getAllByDescriptionLike(description);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByTaskStatus(@RequestParam("status") final String status) {
+    @GetMapping("/status")
+    public List<TaskResponse> filterByTaskStatus(@RequestParam("status") final String status) {
         return service.getAllByTaskStatus(status);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByDurationGreater(@RequestParam("duration") final Long duration) {
+    @GetMapping("/duration/greater")
+    public List<TaskResponse> filterByDurationGreater(@RequestParam("duration") final Long duration) {
         return service.getAllByDurationGreaterThanEqual(duration);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByDurationLess(@RequestParam("duration") final Long duration) {
+    @GetMapping("/duration/less")
+    public List<TaskResponse> filterByDurationLess(@RequestParam("duration") final Long duration) {
         return service.getAllByDurationLessThanEqual(duration);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByTotalDurationGreater(@RequestParam("duration") final Long duration) {
+    @GetMapping("/totalduration/greater")
+    public List<TaskResponse> filterByTotalDurationGreater(@RequestParam("duration") final Long duration) {
         return service.getAllByTotalDurationGreaterThanEqual(duration);
     }
 
-    @GetMapping
-    public List<TaskResponse> getAllByTotalDurationLess(@RequestParam("duration") final Long duration) {
+    @GetMapping("/totalduration/less")
+    public List<TaskResponse> filterByTotalDurationLess(@RequestParam("duration") final Long duration) {
         return service.getAllByTotalDurationLessThanEqual(duration);
     }
 }
