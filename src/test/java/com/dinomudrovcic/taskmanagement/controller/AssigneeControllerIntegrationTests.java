@@ -1,18 +1,11 @@
 package com.dinomudrovcic.taskmanagement.controller;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
 import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
 import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
-import com.dinomudrovcic.taskmanagement.repository.AssigneeRepository;
-import com.dinomudrovcic.taskmanagement.service.impl.AssigneeServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
@@ -27,8 +20,6 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
