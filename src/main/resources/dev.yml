@@ -6,7 +6,6 @@ logging:
     root: WARN
     org.springframework: INFO
     org.hibernate.type.descriptor.sql: TRACE #show sql parameters
-    hr.biss: TRACE
 
 spring:
 
