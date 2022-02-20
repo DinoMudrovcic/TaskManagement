@@ -56,7 +56,7 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 2. Extract .zip
 3. Run **mvn clean package** in project directory
 4. Jar file is in **/target** directory.
-5. Run command **java-Xmx512m -Xms256m  -jar task-management-0.0.1-SNAPSHOT.jar
+5. Run command **java -Xmx512m -Xms256m  -jar task-management-0.0.1-SNAPSHOT.jar
    --spring.config.location=classpath:/dev.yml**
 
 
