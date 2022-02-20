@@ -9,4 +9,11 @@
     <include relativeToChangelogFile="true" file="tables/2022-02-17-002-assignee-tables.xml"/>
     <include relativeToChangelogFile="true" file="tables/2022-02-17-003-task-time-tables.xml"/>
 
+
+    <include relativeToChangelogFile="true" file="tables/2022-02-19-subtask-status-column.xml"/>
+
+
+
+
+
 </databaseChangeLog>
