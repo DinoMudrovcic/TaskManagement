@@ -4,7 +4,7 @@ import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
 import com.dinomudrovcic.taskmanagement.domain.task.TaskTime;
 import com.dinomudrovcic.taskmanagement.repository.TaskTimeRepository;
 import com.dinomudrovcic.taskmanagement.service.AssigneeService;
-import com.dinomudrovcic.taskmanagement.service.SubTaskService;
+import com.dinomudrovcic.taskmanagement.service.SubtaskService;
 import com.dinomudrovcic.taskmanagement.service.TaskService;
 import com.dinomudrovcic.taskmanagement.service.TaskTimeService;
 import com.dinomudrovcic.taskmanagement.util.CalculationUtils;
@@ -25,7 +25,7 @@ public class TaskTimeServiceImpl implements TaskTimeService {
 
     private final AssigneeService assigneeService;
 
-    private final SubTaskService subTaskService;
+    private final SubtaskService subTaskService;
 
     @Override
     public boolean endTaskTime(final Long taskId) {

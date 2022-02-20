@@ -9,10 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TaskGroupRequest {
+public class SubtaskRequest {
 
-    private Long taskGroupId;
+    private Long subTaskId;
 
-    private String taskGroupName;
+    private String subTaskName;
+
+    private String subTaskDescription;
+
+    private Long subTaskStatus;
+
+    private Long taskId;
 
 }
