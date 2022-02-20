@@ -4,7 +4,7 @@ import com.dinomudrovcic.taskmanagement.domain.task.Task;
 import com.dinomudrovcic.taskmanagement.domain.task.TaskStatus;
 import com.dinomudrovcic.taskmanagement.model.request.TaskRequest;
 import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
-import com.dinomudrovcic.taskmanagement.repository.SubTaskRepository;
+import com.dinomudrovcic.taskmanagement.repository.SubtaskRepository;
 import com.dinomudrovcic.taskmanagement.repository.TaskRepository;
 import com.dinomudrovcic.taskmanagement.service.TaskGroupService;
 import com.dinomudrovcic.taskmanagement.service.TaskService;
@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
-    private final SubTaskRepository subTaskRepository;
+    private final SubtaskRepository subTaskRepository;
 
     private final TaskGroupService taskGroupService;
 
@@ -44,7 +44,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse getTaskResponse(final TaskRequest request) {
-        Task retrievedTask = taskRepository.getById(request.getTask_id());
+        Task retrievedTask = taskRepository.getById(request.getTaskId());
         return TaskResponse.builder()
                 .id(retrievedTask.getId())
                 .taskName(retrievedTask.getName())
@@ -73,14 +73,14 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public TaskResponse saveTaskResponse(final TaskRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTask_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTaskId())) {
             return TaskResponse.builder().build();
         }
 
         Task newTask = new Task();
-        newTask.setName(request.getTask_name());
-        newTask.setDescription(request.getTask_description());
-        newTask.setTaskGroup(taskGroupService.getGroupById(request.getTask_group_id()));
+        newTask.setName(request.getTaskName());
+        newTask.setDescription(request.getTaskDescription());
+        newTask.setTaskGroup(taskGroupService.getGroupById(request.getTaskGroupId()));
         newTask.setTaskStatus(TaskStatus.CREATED);
 
         Task savedTask = taskRepository.save(newTask);
@@ -99,14 +99,14 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public TaskResponse updateTaskResponse(final TaskRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTask_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTaskId())) {
             return TaskResponse.builder().build();
         }
 
-        Task updateTask = taskRepository.getById(request.getTask_id());
-        updateTask.setName(request.getTask_name());
-        updateTask.setDescription(request.getTask_description());
-        updateTask.setTaskGroup(taskGroupService.getGroupById(request.getTask_group_id()));
+        Task updateTask = taskRepository.getById(request.getTaskId());
+        updateTask.setName(request.getTaskName());
+        updateTask.setDescription(request.getTaskDescription());
+        updateTask.setTaskGroup(taskGroupService.getGroupById(request.getTaskGroupId()));
 
         Task updatedTask = taskRepository.save(updateTask);
 
@@ -123,12 +123,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean deleteTask(final TaskRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTask_id())
-            && subTaskRepository.findAllByTaskId(request.getTask_id()).isEmpty()) {
+        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTaskId())
+            && subTaskRepository.findAllByTaskId(request.getTaskId()).isEmpty()) {
             return false;
         }
 
-        taskRepository.deleteById(request.getTask_id());
+        taskRepository.deleteById(request.getTaskId());
 
         return true;
     }
