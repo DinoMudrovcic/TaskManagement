@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8080
 
 logging:
   level:
@@ -18,15 +18,16 @@ spring:
       matching-strategy: ant_path_matcher
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/taskmanagementdb
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:taskmanagementdb
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
   jpa:
+    defer-datasource-initialization: false
     hibernate:
       ddl-auto: none
       use-new-id-generator-mappings: true  # get rid of one hibernate warning
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true # show each sql executed
     properties:
       hibernate:
@@ -42,3 +43,49 @@ spring:
       populate-initial-data: true
       postgre-partitioning: false
 
+  h2:
+    console:
+      enabled: true
+      path: /h2console
+
+---
+
+spring:
+
+  profiles:
+    active: test
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  datasource:
+    url: jdbc:h2:mem:taskmanagementdb
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: false
+    hibernate:
+      ddl-auto: create-drop
+      use-new-id-generator-mappings: true  # get rid of one hibernate warning
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true # show each sql executed
+    properties:
+      hibernate:
+        #format_sql: true # format executed sql
+        cache:
+          use_second_level_cache: false
+
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/liquibase.xml
+    parameters:
+      populate-initial-data: true
+      postgre-partitioning: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2console
