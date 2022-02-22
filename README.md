@@ -55,7 +55,7 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 1. Download .zip repository
 2. Extract .zip
 3. Run **mvn clean package** in project directory
-4. Jar file is in **/target** directory.
+4. Go to **/target** directory where .jar is packaged.
 5. Run command **java -Xmx512m -Xms256m  -jar task-management-0.0.1-SNAPSHOT.jar
    --spring.config.location=classpath:/dev.yml**
 
@@ -67,6 +67,7 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 ## Other consideration
 
 - Microservice architecture
+- Flyway
 
 ## Future improvements
 
@@ -75,3 +76,4 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 - Jenkins build
 - Versioning
 - Grafana/Prometheus for monitoring
+- JWT Security
