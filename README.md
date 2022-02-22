@@ -1,3 +1,4 @@
+
 # TaskManagement API
 
 ### Technology stack:
@@ -52,6 +53,12 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 
 # HOW TO RUN APPLICATION LOCALLY
 
+### Prerequisites
+
+ - Java 17
+ - Maven 
+
+### Step by step
 1. Download .zip repository
 2. Extract .zip
 3. Run **mvn clean package** in project directory
