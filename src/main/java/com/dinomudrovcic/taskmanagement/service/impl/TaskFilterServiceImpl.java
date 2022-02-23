@@ -20,12 +20,12 @@ public class TaskFilterServiceImpl implements TaskFilterService {
 
     @Override
     public List<TaskResponse> getAllByNameLike(final String name) {
-        return createTaskResponse(taskRepository.findAllByNameLike(name));
+        return createTaskResponse(taskRepository.findAllByNameContainsIgnoreCase(name));
     }
 
     @Override
     public List<TaskResponse> getAllByDescriptionLike(final String description) {
-        return createTaskResponse(taskRepository.findAllByDescriptionLike(description));
+        return createTaskResponse(taskRepository.findAllByDescriptionContainsIgnoreCase(description));
     }
 
     @Override

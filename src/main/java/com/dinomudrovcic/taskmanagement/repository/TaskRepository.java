@@ -10,9 +10,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findAllByTaskGroupId(final Long groupId);
 
-    Optional<Task> findAllByNameLike(String name);
+    Optional<Task> findAllByNameContainsIgnoreCase(String name);
 
-    Optional<Task> findAllByDescriptionLike(String description);
+    Optional<Task> findAllByDescriptionContainsIgnoreCase(String description);
 
     Optional<Task> findAllByTaskStatus(String taskStatus);
 
