@@ -1,20 +1,26 @@
 package com.dinomudrovcic.taskmanagement.model.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-public class TaskRequest implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class TaskRequest {
 
-    private Long task_id;
+    private Long taskId;
 
-    private String task_name;
+    private String taskName;
 
-    private String task_description;
+    private String taskDescription;
 
-    private Long task_assignee_id;
+    private Long taskAssigneeId;
 
-    private Long task_group_id;
+    private Long taskGroupId;
 
 }

@@ -51,8 +51,8 @@ public class AssigneeServiceUnitTests {
 
     @Test
     public void testGetAssigneeResponseByRequest() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assignee_id(1L).build();
-        AssigneeResponse assigneeResponse = assigneeService.getAssigneeResponse(assigneeRequest.getAssignee_id());
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).build();
+        AssigneeResponse assigneeResponse = assigneeService.getAssigneeResponse(assigneeRequest.getAssigneeId());
 
         assertNotNull(assigneeResponse);
     }
@@ -66,8 +66,8 @@ public class AssigneeServiceUnitTests {
 
     @Test
     public void testSaveAssigneeResponse() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
 
         AssigneeResponse actualAssigneeResponse = assigneeService.saveAssigneeResponse(assigneeRequest);
 
@@ -76,9 +76,9 @@ public class AssigneeServiceUnitTests {
 
     @Test
     public void testUpdateAssigneeResponse() {
-        AssigneeRequest assigneeRequestSave = AssigneeRequest.builder().assignee_id(1L).assignee_name("test1").assignee_surname("test1").build();
-        AssigneeRequest assigneeRequestUpdate = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeRequest assigneeRequestSave = AssigneeRequest.builder().assigneeId(1L).assigneeName("test1").assigneeSurname("test1").build();
+        AssigneeRequest assigneeRequestUpdate = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
 
         assigneeService.saveAssigneeResponse(assigneeRequestSave);
         AssigneeResponse actualAssigneeResponse = assigneeService.saveAssigneeResponse(assigneeRequestUpdate);
@@ -102,9 +102,9 @@ public class AssigneeServiceUnitTests {
 
     @Test
     public void testAssigneeExists() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         final boolean result = assigneeService.deleteAssignee(assigneeRequest);
-        Mockito.verify(assigneeRepository, Mockito.times(1)).deleteById(assigneeRequest.getAssignee_id());
+        Mockito.verify(assigneeRepository, Mockito.times(1)).deleteById(assigneeRequest.getAssigneeId());
         assertTrue(result);
     }
 

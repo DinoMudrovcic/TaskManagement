@@ -56,7 +56,7 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testAllAssignees() {
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         AssigneeResponse[] actualAssigneeResponses = restTemplate.getForObject(baseUrl.concat("/assignees"), AssigneeResponse[].class);
         assertEquals(expectedAssigneeResponse, actualAssigneeResponses[0]);
     }
@@ -69,8 +69,8 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testGetAssigneeByRequest() {
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
-        AssigneeRequest request = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeRequest request = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         AssigneeResponse actualAssigneeResponse = restTemplate.postForObject(baseUrl.concat("/fetch"), request, AssigneeResponse.class);
         assertEquals(expectedAssigneeResponse,  actualAssigneeResponse);
     }
@@ -83,7 +83,7 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testGetAssigneeById() {
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         AssigneeResponse actualAssigneeResponse = restTemplate.getForObject(baseUrl.concat("/{id}"), AssigneeResponse.class, 1L);
         assertEquals(expectedAssigneeResponse,  actualAssigneeResponse);
     }
@@ -93,8 +93,8 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testSave() {
-        AssigneeRequest request = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeRequest request = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         AssigneeResponse actualAssigneeResponse = restTemplate.postForObject(baseUrl, request, AssigneeResponse.class);
 
         assertEquals(expectedAssigneeResponse, actualAssigneeResponse);
@@ -108,8 +108,8 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testUpdate() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assignee_id(1L).assignee_name("test1").assignee_surname("test1").build();
-        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().id(1L).assigneeName("test1").assigneeSurname("test1").build();
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test1").assigneeSurname("test1").build();
+        AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test1").assigneeSurname("test1").build();
 
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<AssigneeRequest> request = new HttpEntity<>(assigneeRequest, httpHeaders);
@@ -128,7 +128,7 @@ public class AssigneeControllerIntegrationTests {
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     public void testDelete() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assignee_id(1L).assignee_name("test").assignee_surname("test").build();
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
 
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<AssigneeRequest> request = new HttpEntity<>(assigneeRequest, httpHeaders);

@@ -29,7 +29,7 @@ public class TaskTime {
 
     @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinColumn(name = "sub_task_id", foreignKey = @ForeignKey(name = "tasktime_subtask_fk"))
-    private SubTask subTask;
+    private Subtask subTask;
 
     @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinColumn(name = "assignee_id", foreignKey = @ForeignKey(name = "tasktime_assignee_fk"))

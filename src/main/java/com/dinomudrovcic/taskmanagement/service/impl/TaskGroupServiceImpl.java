@@ -25,8 +25,8 @@ public class TaskGroupServiceImpl implements TaskGroupService {
     public List<TaskGroupResponse> getAllTaskGroups() {
         return taskGroupRepository.findAll().stream()
                 .map(taskGroup -> TaskGroupResponse.builder()
-                        .task_group_id(taskGroup.getId())
-                        .task_group_name(taskGroup.getTaskGroupName())
+                        .taskGroupId(taskGroup.getId())
+                        .taskGroupName(taskGroup.getTaskGroupName())
                         .build()
                 )
                 .collect(Collectors.toUnmodifiableList());
@@ -34,10 +34,10 @@ public class TaskGroupServiceImpl implements TaskGroupService {
 
     @Override
     public TaskGroupResponse getTaskGroup(final TaskGroupRequest request) {
-        TaskGroup retrievedTaskGroup = taskGroupRepository.getById(request.getTask_group_id());
+        TaskGroup retrievedTaskGroup = taskGroupRepository.getById(request.getTaskGroupId());
         return TaskGroupResponse.builder()
-                .task_group_id(retrievedTaskGroup.getId())
-                .task_group_name(retrievedTaskGroup.getTaskGroupName())
+                .taskGroupId(retrievedTaskGroup.getId())
+                .taskGroupName(retrievedTaskGroup.getTaskGroupName())
                 .build();
     }
 
@@ -45,54 +45,54 @@ public class TaskGroupServiceImpl implements TaskGroupService {
     public TaskGroupResponse getTaskGroup(final Long id) {
         TaskGroup retrievedTaskGroup = taskGroupRepository.getById(id);
         return TaskGroupResponse.builder()
-                .task_group_id(retrievedTaskGroup.getId())
-                .task_group_name(retrievedTaskGroup.getTaskGroupName())
+                .taskGroupId(retrievedTaskGroup.getId())
+                .taskGroupName(retrievedTaskGroup.getTaskGroupName())
                 .build();
     }
 
     @Override
     public TaskGroupResponse saveTaskGroup(final TaskGroupRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTask_group_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTaskGroupId())) {
             return TaskGroupResponse.builder().build();
         }
 
         TaskGroup newTaskGroup = new TaskGroup();
-        newTaskGroup.setTaskGroupName(request.getTask_group_name());
+        newTaskGroup.setTaskGroupName(request.getTaskGroupName());
 
         TaskGroup savedTaskGroup = taskGroupRepository.saveAndFlush(newTaskGroup);
 
         return TaskGroupResponse.builder()
-                .task_group_id(savedTaskGroup.getId())
-                .task_group_name(savedTaskGroup.getTaskGroupName())
+                .taskGroupId(savedTaskGroup.getId())
+                .taskGroupName(savedTaskGroup.getTaskGroupName())
                 .build();
     }
 
     @Override
     public TaskGroupResponse updateTaskGroup(final TaskGroupRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTask_group_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTaskGroupId())) {
             return TaskGroupResponse.builder().build();
         }
 
         TaskGroup updateTaskGroup = new TaskGroup();
-        updateTaskGroup.setId(request.getTask_group_id());
-        updateTaskGroup.setTaskGroupName(request.getTask_group_name());
+        updateTaskGroup.setId(request.getTaskGroupId());
+        updateTaskGroup.setTaskGroupName(request.getTaskGroupName());
 
         TaskGroup savedTaskGroup = taskGroupRepository.saveAndFlush(updateTaskGroup);
 
         return TaskGroupResponse.builder()
-                .task_group_id(savedTaskGroup.getId())
-                .task_group_name(savedTaskGroup.getTaskGroupName())
+                .taskGroupId(savedTaskGroup.getId())
+                .taskGroupName(savedTaskGroup.getTaskGroupName())
                 .build();
     }
 
     @Override
     public boolean deleteTaskGroup(final TaskGroupRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTask_group_id())
-            && taskRepository.findAllByTaskGroupId(request.getTask_group_id()).isEmpty()) {
+        if (!RepositoryUtils.checkIfEntityExists(taskGroupRepository, request.getTaskGroupId())
+            && taskRepository.findAllByTaskGroupId(request.getTaskGroupId()).isEmpty()) {
             return false;
         }
 
-        taskGroupRepository.deleteById(request.getTask_group_id());
+        taskGroupRepository.deleteById(request.getTaskGroupId());
 
         return true;
     }

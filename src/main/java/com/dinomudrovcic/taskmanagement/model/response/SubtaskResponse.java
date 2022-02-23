@@ -9,10 +9,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TaskGroupResponse {
+public class SubtaskResponse {
 
-    private Long taskGroupId;
+    private Long subtaskId;
 
-    private String taskGroupName;
+    private String subtaskName;
+
+    private String subtaskDescription;
+
+    private String subtaskStatus;
+
+    private Long duration;
+
+    private Long taskId;
 
 }

@@ -8,14 +8,11 @@ import lombok.Data;
 @Builder
 public class AssigneeRequest {
 
-    @JsonProperty
-    private Long assignee_id;
+    private Long assigneeId;
 
-    @JsonProperty
-    private String assignee_name;
+    private String assigneeName;
 
-    @JsonProperty
-    private String assignee_surname;
+    private String assigneeSurname;
 
 
 }

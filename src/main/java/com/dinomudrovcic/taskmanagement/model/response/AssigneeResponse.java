@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AssigneeResponse {
 
-    private Long id;
+    private Long assigneeId;
 
     private String assigneeName;
 

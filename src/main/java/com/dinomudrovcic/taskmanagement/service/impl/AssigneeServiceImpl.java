@@ -23,7 +23,7 @@ public class AssigneeServiceImpl implements AssigneeService {
     public List<AssigneeResponse> getAllAssigneesResponse() {
         return assigneeRepository.findAll().stream()
                 .map(assignee -> AssigneeResponse.builder()
-                        .id(assignee.getId())
+                        .assigneeId(assignee.getId())
                         .assigneeName(assignee.getAssigneeName())
                         .assigneeSurname(assignee.getAssigneeSurname())
                         .build())
@@ -32,9 +32,9 @@ public class AssigneeServiceImpl implements AssigneeService {
 
     @Override
     public AssigneeResponse getAssigneeResponse(final AssigneeRequest request) {
-        Assignee retrievedAssignee = assigneeRepository.getById(request.getAssignee_id());
+        Assignee retrievedAssignee = assigneeRepository.getById(request.getAssigneeId());
         return AssigneeResponse.builder()
-                .id(retrievedAssignee.getId())
+                .assigneeId(retrievedAssignee.getId())
                 .assigneeName(retrievedAssignee.getAssigneeName())
                 .assigneeSurname(retrievedAssignee.getAssigneeSurname())
                 .build();
@@ -44,7 +44,7 @@ public class AssigneeServiceImpl implements AssigneeService {
     public AssigneeResponse getAssigneeResponse(final Long id) {
         Assignee retrievedAssignee = assigneeRepository.getById(id);
         return AssigneeResponse.builder()
-                .id(retrievedAssignee.getId())
+                .assigneeId(retrievedAssignee.getId())
                 .assigneeName(retrievedAssignee.getAssigneeName())
                 .assigneeSurname(retrievedAssignee.getAssigneeSurname())
                 .build();
@@ -53,18 +53,18 @@ public class AssigneeServiceImpl implements AssigneeService {
     @Override
     @Transactional
     public AssigneeResponse saveAssigneeResponse(final AssigneeRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssigneeId())) {
             return AssigneeResponse.builder().build();
         }
 
         Assignee newAssignee = Assignee.builder()
-                .assigneeName(request.getAssignee_name())
-                .assigneeSurname(request.getAssignee_surname())
+                .assigneeName(request.getAssigneeName())
+                .assigneeSurname(request.getAssigneeSurname())
                 .build();
 
         Assignee savedAssignee = assigneeRepository.save(newAssignee);
         return AssigneeResponse.builder()
-                .id(savedAssignee.getId())
+                .assigneeId(savedAssignee.getId())
                 .assigneeName(savedAssignee.getAssigneeName())
                 .assigneeSurname(savedAssignee.getAssigneeSurname())
                 .build();
@@ -73,17 +73,17 @@ public class AssigneeServiceImpl implements AssigneeService {
     @Override
     @Transactional
     public AssigneeResponse updateAssigneeResponse(final AssigneeRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssigneeId())) {
             return AssigneeResponse.builder().build();
         }
 
-        Assignee updateAssignee = assigneeRepository.getById(request.getAssignee_id());
-        updateAssignee.setAssigneeName(request.getAssignee_name());
-        updateAssignee.setAssigneeSurname(request.getAssignee_surname());
+        Assignee updateAssignee = assigneeRepository.getById(request.getAssigneeId());
+        updateAssignee.setAssigneeName(request.getAssigneeName());
+        updateAssignee.setAssigneeSurname(request.getAssigneeSurname());
 
         Assignee updatedAssignee = assigneeRepository.saveAndFlush(updateAssignee);
         return AssigneeResponse.builder()
-                .id(updatedAssignee.getId())
+                .assigneeId(updatedAssignee.getId())
                 .assigneeName(updatedAssignee.getAssigneeName())
                 .assigneeSurname(updatedAssignee.getAssigneeSurname())
                 .build();
@@ -104,11 +104,11 @@ public class AssigneeServiceImpl implements AssigneeService {
     @Override
     @Transactional
     public boolean deleteAssignee(final AssigneeRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssignee_id())) {
+        if (!RepositoryUtils.checkIfEntityExists(assigneeRepository, request.getAssigneeId())) {
             return false;
         }
 
-        assigneeRepository.deleteById(request.getAssignee_id());
+        assigneeRepository.deleteById(request.getAssigneeId());
 
         return true;
     }
