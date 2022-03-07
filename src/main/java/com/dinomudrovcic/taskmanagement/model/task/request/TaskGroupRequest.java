@@ -1,0 +1,18 @@
+package com.dinomudrovcic.taskmanagement.model.task.request;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class TaskGroupRequest {
+
+    private Long taskGroupId;
+
+    private String taskGroupName;
+
+}

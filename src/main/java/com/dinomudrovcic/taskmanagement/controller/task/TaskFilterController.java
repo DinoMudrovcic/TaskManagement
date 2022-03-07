@@ -1,7 +1,7 @@
 package com.dinomudrovcic.taskmanagement.controller.task;
 
-import com.dinomudrovcic.taskmanagement.model.response.TaskResponse;
-import com.dinomudrovcic.taskmanagement.service.TaskFilterService;
+import com.dinomudrovcic.taskmanagement.model.task.response.TaskResponse;
+import com.dinomudrovcic.taskmanagement.service.task.TaskFilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
