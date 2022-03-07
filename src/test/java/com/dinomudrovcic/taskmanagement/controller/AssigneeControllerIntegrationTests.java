@@ -1,7 +1,7 @@
 package com.dinomudrovcic.taskmanagement.controller;
 
-import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
-import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
+import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
+import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

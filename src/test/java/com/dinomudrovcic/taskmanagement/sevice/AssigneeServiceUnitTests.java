@@ -1,10 +1,10 @@
 package com.dinomudrovcic.taskmanagement.sevice;
 
 import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
-import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
-import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
-import com.dinomudrovcic.taskmanagement.repository.AssigneeRepository;
-import com.dinomudrovcic.taskmanagement.service.impl.AssigneeServiceImpl;
+import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
+import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
+import com.dinomudrovcic.taskmanagement.repository.assignee.AssigneeRepository;
+import com.dinomudrovcic.taskmanagement.service.assignee.impl.AssigneeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
