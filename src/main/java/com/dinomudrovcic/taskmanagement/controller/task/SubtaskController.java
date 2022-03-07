@@ -1,8 +1,8 @@
 package com.dinomudrovcic.taskmanagement.controller.task;
 
-import com.dinomudrovcic.taskmanagement.model.request.SubtaskRequest;
-import com.dinomudrovcic.taskmanagement.model.response.SubtaskResponse;
-import com.dinomudrovcic.taskmanagement.service.SubtaskService;
+import com.dinomudrovcic.taskmanagement.model.task.request.SubtaskRequest;
+import com.dinomudrovcic.taskmanagement.model.task.response.SubtaskResponse;
+import com.dinomudrovcic.taskmanagement.service.task.SubtaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

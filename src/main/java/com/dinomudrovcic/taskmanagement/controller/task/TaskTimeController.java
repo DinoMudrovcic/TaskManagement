@@ -1,6 +1,6 @@
 package com.dinomudrovcic.taskmanagement.controller.task;
 
-import com.dinomudrovcic.taskmanagement.service.TaskTimeService;
+import com.dinomudrovcic.taskmanagement.service.task.TaskTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

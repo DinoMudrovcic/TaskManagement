@@ -1,8 +1,8 @@
 package com.dinomudrovcic.taskmanagement.controller.assignee;
 
-import com.dinomudrovcic.taskmanagement.model.request.AssigneeRequest;
-import com.dinomudrovcic.taskmanagement.model.response.AssigneeResponse;
-import com.dinomudrovcic.taskmanagement.service.AssigneeService;
+import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
+import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
+import com.dinomudrovcic.taskmanagement.service.assignee.AssigneeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
