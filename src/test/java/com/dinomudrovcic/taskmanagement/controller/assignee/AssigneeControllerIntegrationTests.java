@@ -1,4 +1,4 @@
-package com.dinomudrovcic.taskmanagement.controller;
+package com.dinomudrovcic.taskmanagement.controller.assignee;
 
 import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
 import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
@@ -45,7 +45,7 @@ public class AssigneeControllerIntegrationTests {
 
     @BeforeEach
     public void setUp() {
-        baseUrl = baseUrl.concat(":").concat(port + "").concat("/api/assignee");
+        baseUrl = baseUrl.concat(":").concat(port + "").concat("/api/assignees");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AssigneeControllerIntegrationTests {
     )
     public void testAllAssignees() {
         AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
-        AssigneeResponse[] actualAssigneeResponses = restTemplate.getForObject(baseUrl.concat("/assignees"), AssigneeResponse[].class);
+        AssigneeResponse[] actualAssigneeResponses = restTemplate.getForObject(baseUrl, AssigneeResponse[].class);
         assertEquals(expectedAssigneeResponse, actualAssigneeResponses[0]);
     }
 
@@ -71,7 +71,7 @@ public class AssigneeControllerIntegrationTests {
     public void testGetAssigneeByRequest() {
         AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         AssigneeRequest request = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
-        AssigneeResponse actualAssigneeResponse = restTemplate.postForObject(baseUrl.concat("/fetch"), request, AssigneeResponse.class);
+        AssigneeResponse actualAssigneeResponse = restTemplate.postForObject(baseUrl.concat("/assignee"), request, AssigneeResponse.class);
         assertEquals(expectedAssigneeResponse,  actualAssigneeResponse);
     }
 

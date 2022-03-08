@@ -1,4 +1,4 @@
-package com.dinomudrovcic.taskmanagement.sevice;
+package com.dinomudrovcic.taskmanagement.sevice.assignee;
 
 import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
 import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;

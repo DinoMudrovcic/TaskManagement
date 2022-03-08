@@ -12,18 +12,18 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/task")
+@RequestMapping("/api/tasks")
 @RequiredArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping("/tasks")
+    @GetMapping
     public List<TaskResponse> getAllTasks() {
         return taskService.getAllTasksResponse();
     }
 
-    @GetMapping
+    @PostMapping("/task")
     public TaskResponse getTask(@Valid @RequestBody final TaskRequest request) {
         return taskService.getTaskResponse(request);
     }
