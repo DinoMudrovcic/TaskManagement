@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/filter/task")
+@RequestMapping("/api/filter/tasks")
 @RequiredArgsConstructor
 public class TaskFilterController {
 
@@ -42,12 +42,12 @@ public class TaskFilterController {
         return service.getAllByDurationLessThanEqual(duration);
     }
 
-    @GetMapping("/totalduration/greater")
+    @GetMapping("/total-duration/greater")
     public List<TaskResponse> filterByTotalDurationGreater(@RequestParam("duration") final Long duration) {
         return service.getAllByTotalDurationGreaterThanEqual(duration);
     }
 
-    @GetMapping("/totalduration/less")
+    @GetMapping("/total-duration/less")
     public List<TaskResponse> filterByTotalDurationLess(@RequestParam("duration") final Long duration) {
         return service.getAllByTotalDurationLessThanEqual(duration);
     }

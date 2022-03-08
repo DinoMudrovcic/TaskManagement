@@ -12,18 +12,18 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/assignee")
+@RequestMapping("/api/assignees")
 @RequiredArgsConstructor
 public class AssigneeController {
 
     private final AssigneeService assigneeService;
 
-    @GetMapping("/assignees")
+    @GetMapping
     public List<AssigneeResponse> getAllAssignees() {
         return assigneeService.getAllAssigneesResponse();
     }
 
-    @PostMapping("/fetch")
+    @PostMapping("/assignee")
     public AssigneeResponse getAssigneeByRequest(@Valid @RequestBody final AssigneeRequest request) {
         return assigneeService.getAssigneeResponse(request);
     }

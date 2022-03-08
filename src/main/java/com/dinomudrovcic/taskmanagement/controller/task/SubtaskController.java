@@ -12,18 +12,18 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/subtask")
+@RequestMapping("/api/subtasks")
 @RequiredArgsConstructor
 public class SubtaskController {
 
     private final SubtaskService subTaskService;
 
-    @GetMapping("/subtasks")
+    @GetMapping
     public List<SubtaskResponse> getAllTasks() {
         return subTaskService.getAllSubTasksResponse();
     }
 
-    @GetMapping
+    @PostMapping("/subtask")
     public SubtaskResponse getTask(@Valid @RequestBody final SubtaskRequest request) {
         return subTaskService.getSubTaskResponse(request);
     }
