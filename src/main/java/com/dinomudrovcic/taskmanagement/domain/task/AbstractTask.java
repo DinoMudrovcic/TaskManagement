@@ -1,6 +1,9 @@
 package com.dinomudrovcic.taskmanagement.domain.task;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -10,6 +13,9 @@ import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractTask {
 
     @Id

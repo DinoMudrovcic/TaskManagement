@@ -1,6 +1,7 @@
 package com.dinomudrovcic.taskmanagement.domain.task;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @EqualsAndHashCode(exclude = { "version" })
 @ToString(exclude = { "version" })
 @SequenceGenerator(name = "abstract_task_gen", sequenceName = "task_seq", allocationSize = 1)

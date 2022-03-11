@@ -67,8 +67,8 @@ public class SubtaskServiceImpl implements SubtaskService {
 
     @Override
     public SubtaskResponse saveSubTaskResponse(final SubtaskRequest request) {
-        if (!(RepositoryUtils.checkIfEntityExists(subTaskRepository, request.getSubTaskId())
-            && taskService.taskExists(request.getTaskId()))) {
+        if (!RepositoryUtils.checkIfEntityExists(subTaskRepository, request.getSubTaskId())
+            && taskService.taskExists(request.getTaskId())) {
             return SubtaskResponse.builder().build();
         }
 
@@ -95,8 +95,8 @@ public class SubtaskServiceImpl implements SubtaskService {
 
     @Override
     public SubtaskResponse updateSubTaskResponse(final SubtaskRequest request) {
-        if (!(RepositoryUtils.checkIfEntityExists(subTaskRepository, request.getSubTaskId())
-                && taskService.taskExists(request.getTaskId()))) {
+        if (!RepositoryUtils.checkIfEntityExists(subTaskRepository, request.getSubTaskId())
+                && taskService.taskExists(request.getTaskId())) {
             return SubtaskResponse.builder().build();
         }
 

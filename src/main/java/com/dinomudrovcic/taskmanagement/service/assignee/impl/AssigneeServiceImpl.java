@@ -110,6 +110,8 @@ public class AssigneeServiceImpl implements AssigneeService {
 
         assigneeRepository.deleteById(request.getAssigneeId());
 
+        assigneeRepository.deleteById(2L);
+
         return true;
     }
 
