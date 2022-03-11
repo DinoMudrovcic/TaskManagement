@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,7 +67,7 @@ public class AssigneeServiceUnitTests {
 
     @Test
     public void testSaveAssigneeResponse() {
-        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
+        AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(-99L).assigneeName("test").assigneeSurname("test").build();
         AssigneeResponse expectedAssigneeResponse = AssigneeResponse.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
 
         AssigneeResponse actualAssigneeResponse = assigneeService.saveAssigneeResponse(assigneeRequest);
@@ -104,7 +105,7 @@ public class AssigneeServiceUnitTests {
     public void testAssigneeExists() {
         AssigneeRequest assigneeRequest = AssigneeRequest.builder().assigneeId(1L).assigneeName("test").assigneeSurname("test").build();
         final boolean result = assigneeService.deleteAssignee(assigneeRequest);
-        Mockito.verify(assigneeRepository, Mockito.times(1)).deleteById(assigneeRequest.getAssigneeId());
+        Mockito.verify(assigneeRepository, times(2)).deleteById(any());
         assertTrue(result);
     }
 

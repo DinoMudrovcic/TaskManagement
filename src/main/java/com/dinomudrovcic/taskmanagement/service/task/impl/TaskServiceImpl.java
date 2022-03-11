@@ -59,21 +59,23 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskResponse getTaskResponse(final Long id) {
         Task retrievedTask = taskRepository.getById(id);
-        return TaskResponse.builder()
-                .id(retrievedTask.getId())
-                .taskName(retrievedTask.getName())
-                .taskDescription(retrievedTask.getDescription())
-                .taskGroup(retrievedTask.getTaskGroup().getTaskGroupName())
-                .taskStatus(retrievedTask.getTaskStatus().getCode())
-                .duration(retrievedTask.getDuration())
-                .totalDuration(retrievedTask.getTotalDuration())
-                .build();
+        return retrievedTask == null ?
+                TaskResponse.builder().build() :
+                TaskResponse.builder()
+                    .id(retrievedTask.getId())
+                    .taskName(retrievedTask.getName())
+                    .taskDescription(retrievedTask.getDescription())
+                    .taskGroup(retrievedTask.getTaskGroup().getTaskGroupName())
+                    .taskStatus(retrievedTask.getTaskStatus().getCode())
+                    .duration(retrievedTask.getDuration())
+                    .totalDuration(retrievedTask.getTotalDuration())
+                    .build();
     }
 
     @Override
     @Transactional
     public TaskResponse saveTaskResponse(final TaskRequest request) {
-        if (!RepositoryUtils.checkIfEntityExists(taskRepository, request.getTaskId())) {
+        if (RepositoryUtils.checkIfEntityExists(taskRepository, request.getTaskId())) {
             return TaskResponse.builder().build();
         }
 
@@ -128,7 +130,7 @@ public class TaskServiceImpl implements TaskService {
             return false;
         }
 
-        taskRepository.deleteById(request.getTaskId());
+        deleteTask(request.getTaskId());
 
         return true;
     }
