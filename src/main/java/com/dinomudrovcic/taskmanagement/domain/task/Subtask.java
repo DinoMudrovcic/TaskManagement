@@ -18,7 +18,7 @@ import javax.persistence.*;
         @AttributeOverride(name = "description", column = @Column(name = "sub_task_description")),
         @AttributeOverride(name = "duration", column = @Column(name = "sub_task_duration"))
 })
-public class Subtask extends AbstractTask {
+public final class Subtask extends AbstractTask {
 
     /*@OneToMany(targetEntity = TaskTime.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<TaskTime> taskTime;*/

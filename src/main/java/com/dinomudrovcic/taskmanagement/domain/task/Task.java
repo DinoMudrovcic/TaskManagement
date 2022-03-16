@@ -20,7 +20,7 @@ import javax.persistence.*;
         @AttributeOverride(name = "description", column = @Column(name = "task_description")),
         @AttributeOverride(name = "duration", column = @Column(name = "task_duration"))
 })
-public class Task extends AbstractTask {
+public final class Task extends AbstractTask {
 
     @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinColumn(name = "task_group_id", foreignKey = @ForeignKey(name = "task_taskgroup_fk"), nullable = false)

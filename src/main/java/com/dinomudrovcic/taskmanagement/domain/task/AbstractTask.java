@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class AbstractTask {
+public sealed abstract class AbstractTask permits Task, Subtask {
 
     @Id
     @GeneratedValue(generator = "abstract_task_gen", strategy = GenerationType.SEQUENCE)
