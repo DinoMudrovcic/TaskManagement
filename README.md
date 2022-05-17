@@ -84,3 +84,5 @@ Time starts from assigning task to assignee and ends when **task/subtask** is **
 - Versioning
 - Grafana/Prometheus for monitoring
 - JWT Security
+- MapStruct
+- Spring Boot Specification
