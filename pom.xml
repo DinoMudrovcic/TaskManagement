@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.dinomudrovcic</groupId>
     <artifactId>task-management</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>task-management</name>
     <description>Task Management API</description>
     <packaging>jar</packaging>
