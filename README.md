@@ -3,7 +3,7 @@
 
 ### Technology stack:
 
-- [Spring Boot 2.6.3](https://docs.spring.io/spring-boot/docs/current/api/)
+- [Spring Boot 2.7.0](https://docs.spring.io/spring-boot/docs/current/api/)
 - [Java 17](https://openjdk.java.net/projects/jdk/17/)
 - [PostgreSQL](https://www.postgresql.org/docs/12/release-12-9.html) / H2
 - [Maven](https://maven.apache.org/docs/3.6.3/release-notes.html)
