@@ -1,6 +1,6 @@
 package com.dinomudrovcic.taskmanagement.service.assignee;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
+import com.dinomudrovcic.taskmanagement.domain.assignee.entity.Assignee;
 import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
 import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
 
