@@ -1,4 +1,4 @@
-package com.dinomudrovcic.taskmanagement.domain.assignee;
+package com.dinomudrovcic.taskmanagement.domain.assignee.entity;
 
 import lombok.*;
 

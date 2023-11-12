@@ -1,6 +1,7 @@
 package com.dinomudrovcic.taskmanagement.service.assignee.impl;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
+import com.dinomudrovcic.taskmanagement.domain.assignee.entity.Assignee;
+import com.dinomudrovcic.taskmanagement.domain.assignee.mapper.AssigneeMapper;
 import com.dinomudrovcic.taskmanagement.model.assignee.request.AssigneeRequest;
 import com.dinomudrovcic.taskmanagement.model.assignee.response.AssigneeResponse;
 import com.dinomudrovcic.taskmanagement.repository.assignee.AssigneeRepository;
@@ -18,36 +19,25 @@ import java.util.stream.Collectors;
 public class AssigneeServiceImpl implements AssigneeService {
 
     private final AssigneeRepository assigneeRepository;
+    private final AssigneeMapper assigneeMapper;
 
     @Override
     public List<AssigneeResponse> getAllAssigneesResponse() {
         return assigneeRepository.findAll().stream()
-                .map(assignee -> AssigneeResponse.builder()
-                        .assigneeId(assignee.getId())
-                        .assigneeName(assignee.getAssigneeName())
-                        .assigneeSurname(assignee.getAssigneeSurname())
-                        .build())
+                .map(assignee -> assigneeMapper.toDto(assignee))
                 .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public AssigneeResponse getAssigneeResponse(final AssigneeRequest request) {
         Assignee retrievedAssignee = assigneeRepository.getById(request.getAssigneeId());
-        return AssigneeResponse.builder()
-                .assigneeId(retrievedAssignee.getId())
-                .assigneeName(retrievedAssignee.getAssigneeName())
-                .assigneeSurname(retrievedAssignee.getAssigneeSurname())
-                .build();
+        return assigneeMapper.toDto(retrievedAssignee);
     }
 
     @Override
     public AssigneeResponse getAssigneeResponse(final Long id) {
         Assignee retrievedAssignee = assigneeRepository.getById(id);
-        return AssigneeResponse.builder()
-                .assigneeId(retrievedAssignee.getId())
-                .assigneeName(retrievedAssignee.getAssigneeName())
-                .assigneeSurname(retrievedAssignee.getAssigneeSurname())
-                .build();
+        return assigneeMapper.toDto(retrievedAssignee);
     }
 
     @Override
@@ -57,17 +47,10 @@ public class AssigneeServiceImpl implements AssigneeService {
             return AssigneeResponse.builder().build();
         }
 
-        Assignee newAssignee = Assignee.builder()
-                .assigneeName(request.getAssigneeName())
-                .assigneeSurname(request.getAssigneeSurname())
-                .build();
+        Assignee newAssignee = assigneeMapper.fromDto(request);
 
         Assignee savedAssignee = assigneeRepository.save(newAssignee);
-        return AssigneeResponse.builder()
-                .assigneeId(savedAssignee.getId())
-                .assigneeName(savedAssignee.getAssigneeName())
-                .assigneeSurname(savedAssignee.getAssigneeSurname())
-                .build();
+        return assigneeMapper.toDto(savedAssignee);
     }
 
     @Override
@@ -78,15 +61,10 @@ public class AssigneeServiceImpl implements AssigneeService {
         }
 
         Assignee updateAssignee = assigneeRepository.getById(request.getAssigneeId());
-        updateAssignee.setAssigneeName(request.getAssigneeName());
-        updateAssignee.setAssigneeSurname(request.getAssigneeSurname());
+        assigneeMapper.update(updateAssignee, request);
 
         Assignee updatedAssignee = assigneeRepository.saveAndFlush(updateAssignee);
-        return AssigneeResponse.builder()
-                .assigneeId(updatedAssignee.getId())
-                .assigneeName(updatedAssignee.getAssigneeName())
-                .assigneeSurname(updatedAssignee.getAssigneeSurname())
-                .build();
+        return assigneeMapper.toDto(updatedAssignee);
     }
 
     @Override

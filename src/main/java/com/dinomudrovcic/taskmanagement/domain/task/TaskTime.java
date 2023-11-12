@@ -1,6 +1,6 @@
 package com.dinomudrovcic.taskmanagement.domain.task;
 
-import com.dinomudrovcic.taskmanagement.domain.assignee.Assignee;
+import com.dinomudrovcic.taskmanagement.domain.assignee.entity.Assignee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
